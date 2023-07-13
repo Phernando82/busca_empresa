@@ -19,29 +19,29 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-# configuração do driver e do wait
+# Driver and wait configuration
 def start_driver():
     chrome_options = Options()
-    arguments = ['--lang=pt-BR', '--start-minimized', '--headless']
+    arguments = ['--lang=en-US', '--start-minimized', '--headless']
     for argument in arguments:
         chrome_options.add_argument(argument)
 
     chrome_options.add_experimental_option('prefs', {
-        # Desabilitar a confirmação de download
+        # Disable download confirmation
         'download.prompt_for_download': False,
-        # Desabilitar notificações
+        # Disable notifications
         'profile.default_content_setting_values.notifications': 2,
-        # Permitir multiplos downloads
+        # Allow multiple downloads
         'profile.default_content_setting_values.automatic_downloads': 1,
     })
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-    # Precisamos definir os parâmetros dentro da função
+    # We need to define the parameters within the function
     wait = WebDriverWait(
         driver,
         10,
-        poll_frequency=1,  # em quanto tempo ele vai tentar
+        poll_frequency=1,  # how often it will try
         ignored_exceptions=[
             NoSuchElementException,
             ElementNotVisibleException,
@@ -52,7 +52,7 @@ def start_driver():
     return driver, wait
 
 
-CHAVE = 'rb*8bb8$x^)w+(xxbg87s2(+6x@+x&dc)d&n((f6g@ljd&7)4g'
+KEY = 'rb*8bb8$x^)w+(xxbg87s2(+6x@+x&dc)d&n((f6g@ljd&7)4g'
 
 
 def get_site(site):
@@ -63,22 +63,21 @@ def get_site(site):
         driver.get(url)
         sleep(2)
         try:
-            botao_recusar = driver.find_element(By.ID, 'W0wltc')
-            botao_recusar.click()
+            decline_button = driver.find_element(By.ID, 'W0wltc')
+            decline_button.click()
         except Exception as e:
             pass
         sleep(2)
-        # link_site = driver.find_element(By.XPATH, '//*[@id="rso"]/div[1]/div/div/div/div/div/div/div[1]/a')
-        # link_site = link_site.get_attribute('href')
+        # Locate the div containing the search result link
         div_link = driver.find_element(By.CLASS_NAME, 'yuRUbf')
+        # Find the anchor tag within the div to extract the link
         link_site = div_link.find_element(By.TAG_NAME, 'a')
         link_site = link_site.get_attribute('href')
-        # print(url)
-        # div_link = driver.find_element(By.XPATH, '//div[@class="yuRUbf"]')
+
         driver.close()
         return link_site
     except Exception as e:
-        link_site = 'Não encontrado'
+        link_site = 'Not found'
         return link_site
     finally:
         driver.quit()
@@ -92,19 +91,21 @@ def get_instagram(instagram_in):
         driver.get(url)
         sleep(2)
         try:
-            botao_recusar = driver.find_element(By.ID, 'W0wltc')
-            botao_recusar.click()
+            decline_button = driver.find_element(By.ID, 'W0wltc')
+            decline_button.click()
         except Exception as e:
             pass
         sleep(2)
+        # Locate the div containing the search result link
         div_link = driver.find_element(By.CLASS_NAME, 'yuRUbf')
+        # Find the anchor tag within the div to extract the link
         link_site = div_link.find_element(By.TAG_NAME, 'a')
         link_instagram = link_site.get_attribute('href')
         driver.close()
         return link_instagram
 
     except Exception as e:
-        link_instagram = 'Não encontrado'
+        link_instagram = 'Not found'
         return link_instagram
     finally:
         driver.quit()
@@ -118,17 +119,19 @@ def get_twitter(twitter_in):
         driver.get(url)
         sleep(2)
         try:
-            botao_recusar = driver.find_element(By.ID, 'W0wltc')
-            botao_recusar.click()
+            decline_button = driver.find_element(By.ID, 'W0wltc')
+            decline_button.click()
         except Exception as e:
             pass
         sleep(2)
+        # Locate the div containing the search result link
         div_link = driver.find_element(By.CLASS_NAME, 'yuRUbf')
+        # Find the anchor tag within the div to extract the link
         link_site = div_link.find_element(By.TAG_NAME, 'a')
         link_twitter = link_site.get_attribute('href')
         return link_twitter
     except Exception as e:
-        link_twitter = 'Não encontrado'
+        link_twitter = 'Not found'
         return link_twitter
     finally:
         driver.quit()
@@ -142,17 +145,19 @@ def get_facebook(facebook_in):
         driver.get(url)
         sleep(2)
         try:
-            botao_recusar = driver.find_element(By.ID, 'W0wltc')
-            botao_recusar.click()
+            decline_button = driver.find_element(By.ID, 'W0wltc')
+            decline_button.click()
         except Exception as e:
             pass
         sleep(2)
+        # Locate the div containing the search result link
         div_link = driver.find_element(By.CLASS_NAME, 'yuRUbf')
+        # Find the anchor tag within the div to extract the link
         link_site = div_link.find_element(By.TAG_NAME, 'a')
         link_facebook = link_site.get_attribute('href')
         return link_facebook
     except Exception as e:
-        link_facebook = 'Não encontrado'
+        link_facebook = 'Not found'
         return link_facebook
     finally:
         driver.quit()
@@ -166,17 +171,19 @@ def get_youtube(youtube_in):
         driver.get(url)
         sleep(2)
         try:
-            botao_recusar = driver.find_element(By.ID, 'W0wltc')
-            botao_recusar.click()
+            decline_button = driver.find_element(By.ID, 'W0wltc')
+            decline_button.click()
         except Exception as e:
             pass
         sleep(2)
+        # Locate the div containing the search result link
         div_link = driver.find_element(By.CLASS_NAME, 'yuRUbf')
+        # Find the anchor tag within the div to extract the link
         link_site = div_link.find_element(By.TAG_NAME, 'a')
         link_youtube = link_site.get_attribute('href')
         return link_youtube
     except Exception as e:
-        link_youtube = 'Não encontrado'
+        link_youtube = 'Not found'
         return link_youtube
     finally:
         driver.quit()
@@ -190,76 +197,81 @@ def get_linkedin(linkedin_in):
         driver.get(url)
         sleep(2)
         try:
-            botao_recusar = driver.find_element(By.ID, 'W0wltc')
-            botao_recusar.click()
+            decline_button = driver.find_element(By.ID, 'W0wltc')
+            decline_button.click()
         except Exception as e:
             pass
         sleep(2)
+        # Locate the div containing the search result link
         div_link = driver.find_element(By.CLASS_NAME, 'yuRUbf')
+        # Find the anchor tag within the div to extract the link
         link_site = div_link.find_element(By.TAG_NAME, 'a')
         link_linkedin = link_site.get_attribute('href')
         return link_linkedin
     except Exception as e:
-        link_linkedin = 'Não encontrado'
+        link_linkedin = 'Not found'
         return link_linkedin
     finally:
         driver.quit()
 
 
-# função para verificar se tem licença válida
-def valida_clave():
-    # endpoint de autenticação
+# Function to validate a valid license
+def validate_license():
+    # Authentication endpoint
     auth_url = 'https://phernando-license-validation.herokuapp.com/auth'
 
-    # credenciais para autenticação
+    # Credentials for authentication
     username = 'Fernando'
     password = 'Hermes82wars!'
 
-    # faz a requisição de autenticação
+    # Send authentication request
     response = requests.post(auth_url, json={'username': username, 'password': password})
 
-    # extrai o token de acesso do corpo da resposta
+    # Extract the access token from the response body
     access_token = response.json()['access_token']
 
-    # endpoint para acessar o token do id
+    # Endpoint to access the ID token
     token_url = 'https://phernando-license-validation.herokuapp.com/token/3'
 
-    # adiciona o token de acesso ao header da requisição
+    # Add the access token to the request header
     headers = {'Authorization': f'Bearer {access_token}'}
 
-    # faz a requisição para obter o token do id
+    # Send request to obtain the ID token
     response = requests.get(token_url, headers=headers)
 
-    # extrai o token do corpo da resposta
+    # Extract the token from the response body
     token = response.json()['token']
 
-    # compara o token retornado com o token guardado em uma variável
-    if token == CHAVE:
+    # Compare the returned token with the stored token in a variable
+    if token == KEY:
         return True
     else:
         return False
 
 
-# especificar o nome do arquivo Excel
+# specify the name of Excel file
 filename = 'dados.xlsx'
 
+# control variable of the execution
 thread_running = True
 
 
+# function to stop the execution
 def stop_thread():
     global thread_running
     thread_running = False
 
 
+# function to fetch data in batch
 def batch_search(directory, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais):
     driver = None
     try:
         global thread_running
         while thread_running:
             companies = []
-            # abre o arquivo de texto
+            # Open the text file
             with open(directory, 'r') as arquivo:
-                # percorre cada linha do arquivo
+                # Read each line of the file
                 for c in arquivo:
                     companies.append(c)
 
@@ -272,9 +284,9 @@ def batch_search(directory, window, instagram, twitter, facebook, youtube, linke
 
                 if stop_event.is_set():
                     thread_running = False
-                    # encerrar a execução da função se a flag de stop estiver definida
+                    # End the function execution if the stop flag is set
                     break
-                # fazer uma solicitação GET para a página com o CNPJ especificado
+                # Send a GET request to the page with the specified CNPJ
                 url = f"https://cnpj.linkana.com/busca?q={c}"
                 driver, wait = start_driver()
                 driver.get(url)
@@ -282,10 +294,10 @@ def batch_search(directory, window, instagram, twitter, facebook, youtube, linke
                 company = wait.until(
                     ce.visibility_of_element_located((By.XPATH, '//*[@id="app"]/div/main/div/div/a/div/div[1]/p[1]')))
                 sleep(2)
-
                 company.click()
                 sleep(2)
                 window['_progress_'].update(20)
+                # Take the data
                 company_name = driver.find_element(By.XPATH, '//*[@id="app"]/div/main/div[2]/ul[1]/li[1]/p')
                 company_name = company_name.text
                 cadastral_company = driver.find_element(By.XPATH,
@@ -364,7 +376,7 @@ def batch_search(directory, window, instagram, twitter, facebook, youtube, linke
                     print(f'Site: {link_site} \n')
                     if redes_sociais != 0:
                         print(f'Redes Sociais: \n {instagram} \n {twitter} \n {facebook} \n {youtube} \n {linkedin} \n')
-                    # adicionar uma nova linha com os valores especificados
+                    # Add a new row with the specified values
                     new_row = pd.DataFrame({'EMPRESA': [company_name],
                                             'CNPJ': [cadastral_company],
                                             'SITUAÇÃO CADASTRAL': [cadastral_situation],
@@ -386,46 +398,46 @@ def batch_search(directory, window, instagram, twitter, facebook, youtube, linke
                                             'YOUTUBE': [youtube],
                                             'LINKEDIN': [linkedin]})
 
-                    # verificar se o arquivo já existe
+                    # Check if the file already exists
                     if os.path.isfile(filename):
-                        # carregar o arquivo Excel existente
+                        # Load the existing Excel file
                         wb = load_workbook(filename)
-                        # selecionar a planilha que será usada
+                        # Select the worksheet to be used
                         ws = wb.active
-                        # obter o índice da última linha preenchida
+                        # Get the index of the last filled row
                         last_row = ws.max_row
-                        # inserir a nova linha abaixo da última linha preenchida
+                        # Insert the new line below the last filled line
                         for r in dataframe_to_rows(new_row, index=False, header=False):
                             row_num = last_row + 1
                             for c_idx, cell_value in enumerate(r, 1):
                                 col_letter = get_column_letter(c_idx)
                                 cell = ws[f'{col_letter}{row_num}']
                                 cell.value = cell_value
-                        # salvar as alterações no arquivo Excel
+                        # Save the changes to the Excel file
                         wb.save(filename)
                     else:
-                        # criar um novo DataFrame com as colunas especificadas
+                        # Create a new DataFrame with the specified columns
                         df = pd.DataFrame(
                             columns=['EMPRESA', 'CNPJ', 'SITUAÇÃO CADASTRAL', 'TELEFONE', 'PORTE', 'ESTADO', 'CIDADE',
                                      'ENDEREÇO',
                                      'CAPITAL SOCIAL', 'DATA ABERTURA', 'SOCIOS', 'CONTATO', 'CNAE',
                                      'NATUREZA JURIDICA', 'SITE', 'INSTAGRAM', 'TWITTER', 'FACEBOOK', 'YOUTUBE',
                                      'LINKEDIN'])
-                        # adicionar a nova linha ao DataFrame
+                        # Add the new row to the DataFrame
                         df = pd.concat([df, new_row], ignore_index=True)
-                        # criar um novo arquivo Excel com as colunas e a nova linha
+                        # create a new Excel file with the columns and the new row
                         wb = Workbook()
                         ws = wb.active
-                        # adicionar as colunas ao arquivo Excel
+                        # Add the columns to the Excel file
                         for col_num, column_title in enumerate(df.columns, 1):
                             col_letter = get_column_letter(col_num)
                             cell = ws[f'{col_letter}1']
                             cell.value = column_title
                             cell.font = Font(bold=True)
-                        # adicionar a nova linha abaixo das colunas
+                        # Add the new row below the columns
                         for r in dataframe_to_rows(df, index=False, header=False):
                             ws.append(r)
-                        # salvar o arquivo Excel
+                        # Save the Excel file
                         wb.save(filename)
                     # input('')
                 driver.close()
@@ -445,22 +457,21 @@ def batch_search(directory, window, instagram, twitter, facebook, youtube, linke
         driver.quit()
 
 
+# Function to fetch data from a single company
 def company_search(business, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais):
     driver, wait = start_driver()
     try:
-        # definir o CNPJ da empresa que você deseja buscar
-        cnpj1 = "61.084.018/0001-03"
-        cnpj2 = "62.314.844/0001-64"
+        # Define the CNPJ of the company you want to search for
+        # cnpj1 = "61.084.018/0001-03"
+        # cnpj2 = "62.314.844/0001-64"
         business = business.replace(' ', '%20')
-        # fazer uma solicitação GET para a página com o CNPJ especificado
+        # Make a GET request to the page with the specified CNPJ
         url = f"https://cnpj.linkana.com/busca?q={business}"
-
         driver.get(url)
         window['_progress_'].update(10)
         company = wait.until(
             ce.visibility_of_element_located((By.XPATH, '//*[@id="app"]/div/main/div/div/a/div/div[1]/p[1]')))
         sleep(2)
-
         company.click()
         sleep(2)
         window['_progress_'].update(20)
@@ -540,7 +551,7 @@ def company_search(business, window, instagram, twitter, facebook, youtube, link
         print(f'Site: {link_site} \n')
         if redes_sociais != 0:
             print(f'Redes Sociais: \n {instagram} \n {twitter} \n {facebook} \n {youtube} \n {linkedin} \n')
-        # adicionar uma nova linha com os valores especificados
+        # Add a new row with the specified values
         new_row = pd.DataFrame({'EMPRESA': [company_name],
                                 'CNPJ': [cadastral_company],
                                 'SITUAÇÃO CADASTRAL': [cadastral_situation],
@@ -562,44 +573,44 @@ def company_search(business, window, instagram, twitter, facebook, youtube, link
                                 'YOUTUBE': [youtube],
                                 'LINKEDIN': [linkedin]})
 
-        # verificar se o arquivo já existe
+        # Check if the file already exists
         if os.path.isfile(filename):
-            # carregar o arquivo Excel existente
+            # Load existing Excel file
             wb = load_workbook(filename)
-            # selecionar a planilha que será usada
+            # Select the spreadsheet to be used
             ws = wb.active
-            # obter o índice da última linha preenchida
+            # Get the index of the last filled row
             last_row = ws.max_row
-            # inserir a nova linha abaixo da última linha preenchida
+            # Insert the new line below the last filled line
             for r in dataframe_to_rows(new_row, index=False, header=False):
                 row_num = last_row + 1
                 for c_idx, cell_value in enumerate(r, 1):
                     col_letter = get_column_letter(c_idx)
                     cell = ws[f'{col_letter}{row_num}']
                     cell.value = cell_value
-            # salvar as alterações no arquivo Excel
+            # Save the changes to the Excel file
             wb.save(filename)
         else:
-            # criar um novo DataFrame com as colunas especificadas
+            # Create a new DataFrame with the specified columns
             df = pd.DataFrame(
                 columns=['EMPRESA', 'CNPJ', 'SITUAÇÃO CADASTRAL', 'TELEFONE', 'PORTE', 'ESTADO', 'CIDADE', 'ENDEREÇO',
                          'CAPITAL SOCIAL', 'DATA ABERTURA', 'SOCIOS', 'CONTATO', 'CNAE', 'NATUREZA JURIDICA', 'SITE',
                          'INSTAGRAM', 'TWITTER', 'FACEBOOK', 'YOUTUBE', 'LINKEDIN'])
-            # adicionar a nova linha ao DataFrame
+            # Add the new row to the DataFrame
             df = pd.concat([df, new_row], ignore_index=True)
-            # criar um novo arquivo Excel com as colunas e a nova linha
+            # Create a new Excel file with the columns and the new row
             wb = Workbook()
             ws = wb.active
-            # adicionar as colunas ao arquivo Excel
+            # Add the columns to the Excel file
             for col_num, column_title in enumerate(df.columns, 1):
                 col_letter = get_column_letter(col_num)
                 cell = ws[f'{col_letter}1']
                 cell.value = column_title
                 cell.font = Font(bold=True)
-            # adicionar a nova linha abaixo das colunas
+            # Add the new row below the columns
             for r in dataframe_to_rows(df, index=False, header=False):
                 ws.append(r)
-            # salvar o arquivo Excel
+            # Save the Excel file
             wb.save(filename)
             # input('')
             driver.close()
@@ -618,7 +629,7 @@ def company_search(business, window, instagram, twitter, facebook, youtube, link
 
 
 sg.theme('SystemDefaultForReal')
-# layout das colunas
+# Column layout
 
 coluna_output = [
     [sg.Output(size=(110, 24), key='_output_')],
@@ -636,7 +647,7 @@ coluna_esquerda = [
     [sg.Text("Lista de empresas: "), sg.Input(size=(73, 1), key='directory'), sg.FileBrowse()],
 ]
 
-# layout principal
+# Principal layout
 layout_principal = [
     [sg.Frame('Parâmetros de busca', coluna_esquerda)],
     [sg.Column(coluna_output)],
@@ -644,7 +655,7 @@ layout_principal = [
 ]
 
 if __name__ == '__main__':
-    # janela
+    # Window
     window = sg.Window('Busca Empresas', layout_principal, finalize=True, icon="icone.ico", return_keyboard_events=True,
                        size=(800, 680))
 
@@ -732,5 +743,5 @@ if __name__ == '__main__':
             print(f'Erro na execução: \n {e}')
             break
 
-    # Fecha a janela e encerra a aplicação
+    # closes the window and terminates the application
     window.close()

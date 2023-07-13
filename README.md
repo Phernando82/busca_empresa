@@ -15,7 +15,7 @@ Data Storage: The application saves the extracted company data in an Excel file,
 
 Multi-threading: The application utilizes multi-threading to enhance performance and allow for batch searches of multiple companies.
 
-Social Media Integration: Optional integration with social media platforms (Instagram, Twitter, Facebook, YouTube, LinkedIn) provides additional company information.
+Social media information: The optional search for social media platforms provides additional insights into a company's online presence.
 
 Platform Compatibility: The application is compatible with both Windows and macOS operating systems, allowing users from different platforms to utilize its features.
 

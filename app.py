@@ -668,65 +668,65 @@ if __name__ == '__main__':
 
             if event == 'execute' or event == '\r':  # '\r' representa a tecla Enter
                 window.FindElement('_output_').Update('')
-                if valida_clave():
-                    lote = False
-                    business = values['company']
-                    instagram = True
-                    twitter = True
-                    facebook = True
-                    youtube = True
-                    linkedin = True
-                    redes_sociais: int = 5
-                    if not values['instagram']:
-                        instagram = False
-                        redes_sociais -= 1
-                    if not values['twitter']:
-                        twitter = False
-                        redes_sociais -= 1
-                    if not values['facebook']:
-                        facebook = False
-                        redes_sociais -= 1
-                    if not values['youtube']:
-                        youtube = False
-                        redes_sociais -= 1
-                    if not values['linkedin']:
-                        linkedin = False
-                        redes_sociais -= 1
-                    if values['lote'] and not values['directory']:
-                        print('Precisa selecionar o arquivo com a lista de empresas')
+                # if valida_clave():
+                lote = False
+                business = values['company']
+                instagram = True
+                twitter = True
+                facebook = True
+                youtube = True
+                linkedin = True
+                redes_sociais: int = 5
+                if not values['instagram']:
+                    instagram = False
+                    redes_sociais -= 1
+                if not values['twitter']:
+                    twitter = False
+                    redes_sociais -= 1
+                if not values['facebook']:
+                    facebook = False
+                    redes_sociais -= 1
+                if not values['youtube']:
+                    youtube = False
+                    redes_sociais -= 1
+                if not values['linkedin']:
+                    linkedin = False
+                    redes_sociais -= 1
+                if values['lote'] and not values['directory']:
+                    print('Precisa selecionar o arquivo com a lista de empresas')
 
-                    elif values['lote'] and business:
-                        print('Inciando presquisa em lote... ')
-                        business = ''
-                        lote = True
-                        window['_progress_'].update(0)
-                        directory = values['directory']
-                        thread_catch_batch = Thread(target=batch_search, args=(
-                            directory, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais),
-                                                    daemon=True)
-                        thread_catch_batch.start()
-                        print('Buscando dados...\n')
+                elif values['lote'] and business:
+                    print('Inciando presquisa em lote... ')
+                    business = ''
+                    lote = True
+                    window['_progress_'].update(0)
+                    directory = values['directory']
+                    thread_catch_batch = Thread(target=batch_search, args=(
+                        directory, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais),
+                                                daemon=True)
+                    thread_catch_batch.start()
+                    print('Buscando dados...\n')
 
-                    elif values['lote'] and not business:
-                        lote = True
-                        business = ''
-                        window['_progress_'].update(0)
-                        directory = values['directory']
-                        thread_catch_batch = Thread(target=batch_search, args=(
-                            directory, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais),
-                                                    daemon=True)
-                        thread_catch_batch.start()
-                        print('Buscando dados...\n')
+                elif values['lote'] and not business:
+                    lote = True
+                    business = ''
+                    window['_progress_'].update(0)
+                    directory = values['directory']
+                    thread_catch_batch = Thread(target=batch_search, args=(
+                        directory, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais),
+                                                daemon=True)
+                    thread_catch_batch.start()
+                    print('Buscando dados...\n')
 
-                    else:
-                        window['_progress_'].update(0)
-                        thread_catch_company = Thread(target=company_search, args=(
-                            business, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais),
-                                                      daemon=True)
-                        thread_catch_company.start()
-                        print('Buscando dados...\n')
                 else:
-                    print('Erro no servidor Heroku')
+                    window['_progress_'].update(0)
+                    thread_catch_company = Thread(target=company_search, args=(
+                        business, window, instagram, twitter, facebook, youtube, linkedin, redes_sociais),
+                                                  daemon=True)
+                    thread_catch_company.start()
+                    print('Buscando dados...\n')
+                # else:
+                #     print('Erro no servidor Heroku')
 
         except Exception as e:
             print(f'Erro na execução: \n {e}')

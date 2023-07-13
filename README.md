@@ -11,8 +11,7 @@ Search Functionality: Users can search for company data using their unique ident
 Data Storage: The application saves the extracted company data in an Excel file, allowing for easy organization and analysis.
 Multi-threading: The application utilizes multi-threading to enhance performance and allow for batch searches of multiple companies.
 Social Media Integration: Optional integration with social media platforms (Instagram, Twitter, Facebook, YouTube, LinkedIn) provides additional company information.
-Platform Compatibility:
-The application is compatible with both Windows and macOS operating systems, allowing users from different platforms to utilize its features.
+Platform Compatibility: The application is compatible with both Windows and macOS operating systems, allowing users from different platforms to utilize its features.
 
 Benefits:
 
@@ -21,8 +20,7 @@ Structured Data Storage: The extracted company data is organized in a structured
 Batch Search Capability: Users can perform batch searches for multiple companies, enhancing productivity.
 User-Friendly Interface: The application's intuitive interface ensures a smooth user experience, even for non-technical users.
 Social media insights: Optional integration with social media platforms provides additional insights into a company's online insights into a company's online presence.
-Use Case:
-The Company Data Extraction Application can be used by professionals, researchers, and analysts who require access to accurate and up-to-date company information for various purposes such as market research, due diligence, and competitive analysis.
+Use Case: The Company Data Extraction Application can be used by professionals, researchers, and analysts who require access to accurate and up-to-date company information for various purposes such as market research, due diligence, and competitive analysis.
 
 Note: The application relies on publicly available data and does not access or retrieve any sensitive or private information.
 

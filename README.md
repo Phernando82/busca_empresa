@@ -20,7 +20,7 @@ Efficient Data Retrieval: The application automates the process of data extracti
 Structured Data Storage: The extracted company data is organized in a structured manner within an Excel file, making it easy to manage and analyze.
 Batch Search Capability: Users can perform batch searches for multiple companies, enhancing productivity.
 User-Friendly Interface: The application's intuitive interface ensures a smooth user experience, even for non-technical users.
-Social Media Insights: The optional integration with social media platforms provides additional insights into a company's online presence.
+Social media insights: Optional integration with social media platforms provides additional insights into a company's online insights into a company's online presence.
 Use Case:
 The Company Data Extraction Application can be used by professionals, researchers, and analysts who require access to accurate and up-to-date company information for various purposes such as market research, due diligence, and competitive analysis.
 
